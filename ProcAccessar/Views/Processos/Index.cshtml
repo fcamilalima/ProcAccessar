@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ProcAccessar.Models.Processo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Pesquisar Processo</h1>
+
+<p>
+    <a asp-action="Create">Novo Processo</a>
+</p>
+
+<hr />
+
+<form asp-controller="Processos" asp-action="Index" method="get">
+    <p>
+        <input class="form-control" type="text" />
+        <input type="submit" value="Pesquisar" class="btn btn-primary" />
+    </p>
+</form>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCriacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoriaId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataCriacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoriaId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProcessoId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProcessoId">Detalhar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProcessoId">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

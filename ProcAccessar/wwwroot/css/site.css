@@ -1,0 +1,33 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.mp-logo{
+    width: 150px;
+    height: 90px;
+}
+
+.endereco1 .endereco2{
+    margin:0px 0px 0px;
+    margin-top: 20px;
+    float: left;
+    display:inline-block;
+    line-height:1px;
+}
+/*.border-top {
+    border-top: 1px solid #dee2e6 !important;
+}*/
