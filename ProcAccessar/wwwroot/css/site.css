@@ -1,33 +1,99 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 11px;
-  }
+    html {
+        font-size: 13px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
-.mp-logo{
+
+.mp-logo {
     width: 150px;
     height: 90px;
 }
 
-.endereco1 .endereco2{
-    margin:0px 0px 0px;
+.endereco1 .endereco2 {
+    margin: 0px 0px 0px;
     margin-top: 20px;
     float: left;
-    display:inline-block;
-    line-height:1px;
+    display: inline-block;
+    line-height: 1px;
 }
 /*.border-top {
     border-top: 1px solid #dee2e6 !important;
 }*/
+
+div.codigo {
+    display: inline-flex;
+    width: 400px;
+    margin-top: 10px;
+}
+
+div.titulo {
+    display: inline-flex;
+    width: 400px;
+    margin-top: 10px;
+}
+
+div.descricao {
+    display: inline-flex;
+    width: 400px;
+    margin-top: 10px;
+}
+
+div.data {
+    display: inline-flex;
+    width: 400px;
+    margin-top: 10px;
+}
+
+div.categoriaId {
+    display: inline-flex;
+    width: 400px;
+    margin-top: 10px;
+}
+
+input.form-control {
+    margin: 3px 3px 3px 3px;
+}
+
+label.control-label {
+    margin: 3px 3px 3px 3px;
+    text-align: right;
+    font: 14px;
+}
+
+input.btn {
+    margin: 3px 3px 3px 3px;
+    width: auto;
+}
+
+div.voltar {
+    margin: 3px 3px 3px 3px;
+}
+#separador {
+    width: 400px;
+}
+
+div.criarProcesso hr {
+    border: 1px solid gray;
+    width: 400px !important;
+}
+
+div.criarProcesso div.form-group input.btn{
+    width:400px;
+}
+
+div.criarProcesso div.form-group a {
+    align-content:flex-start;
+}

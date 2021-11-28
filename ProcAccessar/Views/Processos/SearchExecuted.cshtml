@@ -1,31 +1,11 @@
-﻿@model ReflectionIT.Mvc.Paging.PagingList<ProcAccessar.Models.Processo>
-
+﻿@model IEnumerable<ProcAccessar.Models.Processo>
 @{
-    ViewData["Title"] = "Index";
-}
+    ViewData["Title"] = "SearchExecuted";
+ }
 
-<h1>Listar Processo</h1>
+<h1>Resultados Obtidos</h1>
 
-<p>
-    <a asp-action="Create">Novo Processo</a>
-</p>
 
-<hr />
-
-<form method="get" class="form-inline">
-    <div class="busca">
-        <input name="filter" class="form-control" placeholder="filtro" 
-    value="@Model.RouteValue["Filter"]"/>
-    <button type="submit" class="btn btn-info">
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Procurar
-    </button>
-    </div>
-</form>
-
-Total de Processos: @Model.TotalRecordCount
-<div>
-    <vc:pager pager paging-list="@Model"></vc:pager>
-</div>
 <table class="table">
     <thead>
         <tr>
@@ -55,15 +35,13 @@ Total de Processos: @Model.TotalRecordCount
                     @Html.DisplayFor(modelItem => item.Codigo)
                 </td>
                 <td>
-                    @*@Html.SortableHeaderFor(modelItem => item.Titulo)*@
                     @Html.DisplayFor(modelItem => item.Titulo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
                 <td>
-                    @String.Format("{0:dd/MM/yyyy}", item.DataCriacao)
-                    @*@Html.DisplayFor(modelItem => item.DataCriacao)*@
+                    @Html.DisplayFor(modelItem => item.DataCriacao)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CategoriaId)

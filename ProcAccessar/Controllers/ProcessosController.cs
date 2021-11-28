@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProcAccessar.Context;
 using ProcAccessar.Models;
+using ProcAccessar.ViewModels;
+using ReflectionIT.Mvc.Paging;
+using System.Linq;
 
 namespace ProcAccessar.Controllers
 {
@@ -20,20 +18,35 @@ namespace ProcAccessar.Controllers
         }
 
         // GET: Processos
-        public async Task<IActionResult> Index(string searchstring) { 
-            var processos = from p in _context.Processos
-                            select p;
+        //public async Task<IActionResult> Index(string PalavraBusca = "")
+        //{
+        //    var processos = from p in _context.Processos
+        //                    select p;
 
-            if (!string.IsNullOrEmpty(searchstring))
+        //    if (!string.IsNullOrEmpty(PalavraBusca))
+        //    {
+        //        processos = processos.Where(s => s.Titulo.Contains(PalavraBusca));
+        //    }
+        //    processos = processos.OrderBy(s => s.Codigo);
+        //    return View(await processos.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(string filter, int pageindex, string sort= "Titulo")
+        {
+            var resultado = _context.Processos.AsNoTracking().AsQueryable();
+            if (!string.IsNullOrEmpty(filter))
             {
-                processos = processos.Where(s => s.Titulo.Contains(searchstring));
+                resultado = resultado.Where(s => s.Titulo.Contains(filter));
             }
-        
-            return View(await processos.ToListAsync());
-        }
 
-        // GET: Processos/Details/5
-        public async Task<IActionResult> Details(int? id)
+            var model = await PagingList.CreateAsync(resultado, 5, pageindex, sort, "Titulo");
+
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+
+            return View(model);
+        }
+       
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -152,7 +165,18 @@ namespace ProcAccessar.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+        // GET: ProcessoPesquisaViewModel
+        public async Task<IActionResult> Search()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("Search")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search(string palavraBusca)
+        {
+            return View(_context.Processos.Where(p => p.Titulo.Contains(palavraBusca)).OrderBy(p => p.Titulo));
+        }
         private bool ProcessoExists(int id)
         {
             return _context.Processos.Any(e => e.ProcessoId == id);

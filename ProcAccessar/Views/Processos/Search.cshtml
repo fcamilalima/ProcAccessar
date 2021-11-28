@@ -1,0 +1,18 @@
+﻿@model ProcAccessar.Models.Processo
+@{
+    ViewData["Title"] = "Pesquisa";
+}
+<h1>Pesquisa</h1>
+<hr />
+<div>
+    @using (Html.BeginForm())
+    {
+        @*<p>Digite o nome</p>*@
+        <input type="text" name="texto" id="texto" placeholder="Digite a pesquisa" />
+        <div><input type="submit" value="Pesquisar" class="btn btn-primary" onclick="pesquisa()"/></div>
+    }
+</div>
+
+
+
+

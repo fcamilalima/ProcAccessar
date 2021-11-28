@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProcAccessar.Context;
 using ProcAccessar.Repositories;
+using ReflectionIT.Mvc.Paging;
 
 namespace ProcAccessar;
 
@@ -22,6 +23,11 @@ public class Startup
           GetConnectionString("DefaultConnection")));
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddTransient<IProcessoRepository, ProcessoRepository>();
+        services.AddControllersWithViews();
+        services.AddPaging(options => {
+            options.ViewName = "Bootstrap4";
+            options.PageParameterName = "pageindex";
+        });;
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
